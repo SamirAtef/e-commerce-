@@ -1,7 +1,4 @@
-package com.example.ecommerceapp;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
+package com.example.ecommerceapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +10,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.ecommerceapp.R;
+import com.example.ecommerceapp.adapters.SliderAdapter;
 
 public class onBoardingActivity extends AppCompatActivity {
     ViewPager viewPager;
@@ -27,12 +30,14 @@ public class onBoardingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_on_boarding);
 
         viewPager = findViewById(R.id.slider);
         dotsLayout = findViewById(R.id.dots);
         btn = findViewById(R.id.get_started_btn);
+        getSupportActionBar().hide();
+
 
         addDots(0);
         viewPager.addOnPageChangeListener(changeListener);

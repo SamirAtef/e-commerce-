@@ -12,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerceApp">
         <activity
-            android:name=".onBoardingActivity"
+            android:name=".activities.onBoardingActivity"
             android:exported="false" />
 
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".activities.RegistrationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,10 +26,10 @@
         </activity>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="false" />
     </application>
 

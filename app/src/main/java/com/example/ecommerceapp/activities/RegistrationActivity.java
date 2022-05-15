@@ -1,6 +1,5 @@
-package com.example.ecommerceapp;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.ecommerceapp.activities;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ecommerceapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -29,16 +32,18 @@ public class RegistrationActivity extends AppCompatActivity {
         name = findViewById(R.id.name_edit_text);
         email = findViewById(R.id.email_edit_text);
         password = findViewById(R.id.password_edit_text);
+        getSupportActionBar().hide();
 
-        sharedPreferences = getSharedPreferences("onBoardingScreen",MODE_PRIVATE);
-        boolean isFirstTime = sharedPreferences.getBoolean("firstTime",true);
 
-        if (isFirstTime){
+        sharedPreferences = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
+        boolean isFirstTime = sharedPreferences.getBoolean("firstTime", true);
+
+        if (isFirstTime) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("firstTime",false);
+            editor.putBoolean("firstTime", false);
             editor.commit();
 
-            Intent intent = new Intent(RegistrationActivity.this,onBoardingActivity.class);
+            Intent intent = new Intent(RegistrationActivity.this, onBoardingActivity.class);
             startActivity(intent);
             finish();
 
@@ -66,18 +71,14 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this, "Password too short, enter minimum 6 characters", Toast.LENGTH_SHORT).show();
             return;
         }
-        auth.createUserWithEmailAndPassword(userEmail,userPassword)
+        auth.createUserWithEmailAndPassword(userEmail, userPassword)
                 .addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(RegistrationActivity.this, "Successfully Register", Toast.LENGTH_SHORT).show();
-                        } else {
-                          //  Toast.makeText(RegistrationActivity.this, "Registration Failed" + task.getException(), Toast.LENGTH_SHORT).show();
-                        }
 
                     }
                 });
+        Toast.makeText(RegistrationActivity.this, "Successfully Register", Toast.LENGTH_SHORT).show();
         RegistrationActivity.this.startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
 
 
